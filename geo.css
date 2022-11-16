@@ -1,5 +1,7 @@
 body {
-    background-image: ;
+    background-image: url(Geo_Mayhem_Nature.gif);
+    background-size: cover;
+    opacity: 25%;
 }
 
 p {
