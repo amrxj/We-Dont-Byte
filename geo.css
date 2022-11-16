@@ -2,17 +2,43 @@ body
 {
     background-image: url(Geo_Mayhem_Nature.gif);
     background-size: cover;
-
-}
-div box1{
-    background-color: #124559;
-    opacity: 40%;
-    width: 80%;
-    padding: 10%;
-}
-
-
-p {
-    font-size: 50px;
     
+}
+.box{
+background-color:rgba(0, 0, 0, 0.4);
+width: 80;
+padding: 10%;
+}
+
+button {
+    transition: all .5s ease;
+    color: #fff;
+    border: 3px solid white;
+    font-family:'Montserrat', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    font-size: 30px;
+    background-color : transparent;
+    padding: 10px;
+    margin: 20px;
+    outline: none;
+    border-radius: 4px;
+    display: flex;
+}
+button:hover {
+    color: #001F3F;
+    background-color: #fff;
+}
+
+.main_Title{
+    text-align: center;
+    color: white;
+    font-size: 40px;
+}
+
+
+#Copyright
+{
+    font-size: 10px;
 }
