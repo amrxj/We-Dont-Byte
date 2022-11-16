@@ -1,11 +1,12 @@
-body {
-    background-image: url(Geo_Mayhem_Nature.gif);
-    background-size: cover;
-    opacity: 25%;
+#background_Img {
+size: cover;
+opacity: 25%;
 }
-
+#main_title{
+    center;
+}
 p {
-    color:white;
+    col;;
     font-size: 25px;
     
 }
