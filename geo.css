@@ -1,12 +1,18 @@
-#background_Img {
-size: cover;
-opacity: 25%;
+body
+{
+    background-image: url(Geo_Mayhem_Nature.gif);
+    background-size: cover;
+
 }
-#main_title{
-    center;
+div box1{
+    background-color: #124559;
+    opacity: 40%;
+    width: 80%;
+    padding: 10%;
 }
+
+
 p {
-    col;;
-    font-size: 25px;
+    font-size: 50px;
     
 }
