@@ -47,7 +47,7 @@ function initalize(){
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Sobrevuelos_CDMX_HJ2A4913_%2825514321687%29_%28cropped%29.jpg/1200px-Sobrevuelos_CDMX_HJ2A4913_%2825514321687%29_%28cropped%29.jpg",
     "https://lp-cms-production.imgix.net/2019-06/4c410251e0146b2edd2b8b1d64a02047-buenos-aires.jpg"];
 
-    //values and scr set to a random array num
+    //values and src set to a random array num
     newQuote.value = cities[randomNum];
     cityPhoto.src = citiesPhotos[randomNum];
 
@@ -75,7 +75,7 @@ async function loading(loadingText, copyCityphotos) {
 
     var cityPhoto = document.getElementById("city");
     var counter = 0;
-    //sleeping at the begining of the new page
+    //sleeping at the beginning of the new page
 
     await sleep(counter +2 * 1000);
 
@@ -94,7 +94,6 @@ async function loading(loadingText, copyCityphotos) {
 
             case 1:
                 loadingText.innerHTML = "Loading 20%";
-                
                 break;
 
             case 2:
@@ -164,6 +163,6 @@ function randomPhoto(){
 function randomQuote(){
 
     var randomNum = Math.floor(Math.random() * 10);
-    var newPhoto = document.getElementById("quote").vaule = quotes[randomNum];
+    var newPhoto = document.getElementById("quote").value = quotes[randomNum];
 
 } 
