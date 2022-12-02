@@ -52,6 +52,17 @@ padding: 10%;
     font-size: 40px;
 }
 
+#gameplay_Text{
+    text-align: center;
+}
+#answer_Text{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+
+
 
 #Copyright
 {
