@@ -27,7 +27,7 @@ const quotes = ["We cannot solve problems with the kind of thinking we employed 
 //function commenting later
 function initalize(){
     
-    //varibles
+    //variables
     var randomNum = Math.floor(Math.random() * );
     var randomNum2 = Math.floor(Math.random() * 10);
 
@@ -60,9 +60,8 @@ function initalize(){
 }
 
 
-function sleep(ms) {
+function sleep(ms){
     return new Promise(resolve => setTimeout(resolve, ms));
-
 }
 
 function splicingArray(arr, value) {
@@ -77,7 +76,7 @@ async function loading(loadingText, copyCityphotos) {
     var counter = 0;
     //sleeping at the beginning of the new page
 
-    await sleep(counter +2 * 1000);
+    await sleep(counter + 2 * 1000);
 
     while(counter != 5){
 
