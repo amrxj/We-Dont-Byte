@@ -57,28 +57,29 @@ function initalize(easy, medium, hard){
         var allCityphotos = cities_Easy;
     }
 
-    allCityphotos= citiesPhotos;
-    var randomNum = Math.floor(Math.random() * allCityphotos.length -1 );
-    var randomNum2 = Math.floor(Math.random() * quotes.length -1 );
-
     var newQuote = document.getElementById("quote");
     var cityPhoto = document.getElementById("city");
     var loadingPhoto = document.getElementById("loadingPhoto");
     var loadingText = document.getElementById("loadingText");
 
-    var copyCityphotos = allCityphotos;
+    var copyCityphotos = citiesPhotos;
     var allQuotes = quotes;
 
-    //values and scr set to a random array num
-    cityPhoto.src = citiesPhotos[randomNum];
-    newQuote.value = quotes[randomNum2]
 
-    splicingArray(copyCityphotos, randomNum);
+    var randomNum = Math.floor(Math.random() * copyCityphotos.length);
+    var randomNum2 = Math.floor(Math.random() * allQuotes.length);
+
+    //values and scr set to a random array num
+    cityPhoto.src = copyCityphotos[randomNum];
+    newQuote.value = allQuotes[randomNum2]
+
+    //splicingArray(copyCityphotos, randomNum);
+    //splicingArray(allQuotes, randomNum2);
 
     loadingPhoto.src = "https://flevix.com/wp-content/uploads/2019/12/Barline-Loading-Images-1.gif";
 
     loading(loadingText, copyCityphotos, allQuotes);
-}1
+}
 
 
 function sleep(ms) {
@@ -87,32 +88,64 @@ function sleep(ms) {
 }
 
 function splicingArray(arr, value) {
+
     var index = arr.indexOf(value);
-      arr.splice(index, 1);
+      arr.splice(index, value);
     return arr;
   }
-  
-async function loading(loadingText, copyCityphotos, allQuotes) {
+
+async function loading(loadingText, copyCityphotos, allQuotes, previousNumberphoto, previousNumberquote) {
 
     var cityPhoto = document.getElementById("city");
     var newQuote = document.getElementById("quote");
     var counter = 0;
+    var previous = [];
+    var previous2 = [];
+
+    previous.push(previousNumberphoto);
+    previous.push(previousNumberquote);
+
     //sleeping at the begining of the new page
 
     await sleep(counter +2 * 1000);
 
     while(counter!= 5){
 
-        randomNum = Math.floor(Math.random() * copyCityphotos.length - 1);
-        splicingArray(copyCityphotos, randomNum);
+        do{
+            randomNum = Math.floor(Math.random() * copyCityphotos.length);
+            if(previous[counter] != randomNum){
+                break;
+            }
+        }while (previous2 != randomNum);
+        
+
+        previous.push(randomNum);
+
+        //randomNum = Math.floor(Math.random() * copyCityphotos.length);
         cityPhoto.src = copyCityphotos[randomNum];
+        //splicingArray(copyCityphotos, randomNum);
 
-        randomNum2 = Math.floor(Math.random() * allQuotes.length - 1);
-        splicingArray(allQuotes, randomNum2);
+        do{
+            for(var i = 0; i < previous2.length; i++){
+
+                if(previous2[i]){
+                    
+                }
+            }
+
+            randomNum = Math.floor(Math.random() * allQuotes.length);
+            
+        }while (tmp != randomNum);
+
+        previous2.push(randomNum);
+        
+            
+        randomNum2 = Math.floor(Math.random() * allQuotes.length);
         newQuote.value = allQuotes[randomNum2];
-
-        alert(allQuotes);
-        alert(randomNum2);
+        //splicingArray(allQuotes, randomNum2);
+        
+        //alert(allQuotes);
+        //alert(copyCityphotos);
         
         //alert(copyCityphotos, randomNum);
 
@@ -150,7 +183,6 @@ async function loading(loadingText, copyCityphotos, allQuotes) {
         await sleep(counter * 1000);
     }
 }
-
 
 function difficulty_Button()
 {
