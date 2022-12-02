@@ -78,7 +78,7 @@ function initalize(easy, medium, hard){
 
     loadingPhoto.src = "https://flevix.com/wp-content/uploads/2019/12/Barline-Loading-Images-1.gif";
 
-    loading(loadingText, copyCityphotos, allQuotes);
+    loading(loadingText, copyCityphotos, allQuotes, randomNum, randomNum2);
 }
 
 
@@ -101,6 +101,8 @@ async function loading(loadingText, copyCityphotos, allQuotes, previousNumberpho
     var counter = 0;
     var previous = [];
     var previous2 = [];
+    var bothTruequotes = false;
+    var bothTruephoto = false;
 
     previous.push(previousNumberphoto);
     previous.push(previousNumberquote);
@@ -112,13 +114,25 @@ async function loading(loadingText, copyCityphotos, allQuotes, previousNumberpho
     while(counter!= 5){
 
         do{
-            randomNum = Math.floor(Math.random() * copyCityphotos.length);
-            if(previous[counter] != randomNum){
-                break;
-            }
-        }while (previous2 != randomNum);
-        
+            var tmp = 0;
 
+            randomNum = Math.floor(Math.random() * copyCityphotos.length);
+
+            for(var i = 0; i < previous.length; i++){
+
+                if(previous[i] != randomNum){
+                }
+
+                else if(previous[i] == randomNum){
+                    tmp++;
+                }
+
+            }
+            
+        }while (tmp != 0);
+
+        alert(randomNum);
+        
         previous.push(randomNum);
 
         //randomNum = Math.floor(Math.random() * copyCityphotos.length);
@@ -126,21 +140,25 @@ async function loading(loadingText, copyCityphotos, allQuotes, previousNumberpho
         //splicingArray(copyCityphotos, randomNum);
 
         do{
+
+            var tmp = 0;
+            randomNum2 = Math.floor(Math.random() * allQuotes.length);
+
             for(var i = 0; i < previous2.length; i++){
 
-                if(previous2[i]){
-                    
+                if(previous2[i] != randomNum2){
+                          
+                }
+
+                else if(previous2[i] == randomNum2){
+                    tmp++;
                 }
             }
-
-            randomNum = Math.floor(Math.random() * allQuotes.length);
             
-        }while (tmp != randomNum);
+        }while (tmp != 0);
 
-        previous2.push(randomNum);
+        previous2.push(randomNum2);
         
-            
-        randomNum2 = Math.floor(Math.random() * allQuotes.length);
         newQuote.value = allQuotes[randomNum2];
         //splicingArray(allQuotes, randomNum2);
         
