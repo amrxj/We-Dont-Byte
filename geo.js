@@ -200,6 +200,8 @@ async function loading(loadingText, copyCityphotos, allQuotes, previousNumberpho
 
         await sleep(counter * 1000);
     }
+
+    
 }
 
 function difficulty_Button()
