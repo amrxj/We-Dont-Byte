@@ -53,6 +53,7 @@ function initalize(easy, medium, hard){
     var loadingText = document.getElementById("loadingText");
 
     var copyCityphotos = allCityphotos;
+    var allQuotes = quotes;
 
     //values and scr set to a random array num
     cityPhoto.src = citiesPhotos[randomNum];
@@ -62,8 +63,8 @@ function initalize(easy, medium, hard){
 
     loadingPhoto.src = "https://flevix.com/wp-content/uploads/2019/12/Barline-Loading-Images-1.gif";
 
-    loading(loadingText, copyCityphotos);
-}
+    loading(loadingText, copyCityphotos, allQuotes);
+}1
 
 
 function sleep(ms) {
@@ -77,9 +78,10 @@ function splicingArray(arr, value) {
     return arr;
   }
   
-async function loading(loadingText, copyCityphotos) {
+async function loading(loadingText, copyCityphotos, allQuotes) {
 
     var cityPhoto = document.getElementById("city");
+    var newQuote = document.getElementById("quote");
     var counter = 0;
     //sleeping at the begining of the new page
 
@@ -90,6 +92,11 @@ async function loading(loadingText, copyCityphotos) {
         randomNum = Math.floor(Math.random() * copyCityphotos.length);
         splicingArray(copyCityphotos, randomNum);
         cityPhoto.src = copyCityphotos[randomNum];
+
+        randomNum2 = Math.floor(Math.random() * allQuotes.length);
+        splicingArray(allQuotes, randomNum2);
+        newQuote.value = allQuotes[randomNum2];
+
 
         
         alert(copyCityphotos, randomNum);
@@ -117,7 +124,9 @@ async function loading(loadingText, copyCityphotos) {
 
             case 5:
                 loadingText.innerHTML = "Loading 100%";
+                await sleep(counter +2 * 1000);
                 break;
+                
 
             default:
                 break;
@@ -126,7 +135,6 @@ async function loading(loadingText, copyCityphotos) {
         await sleep(counter * 1000);
     }
 }
-
 
 
 function difficulty_Button()

@@ -90,6 +90,16 @@ padding: 10%;
     object-fit: contain;
   }
 
+.quote{
+    text-align: center;
+    height:50px; 
+    width:1000px;
+}
+
 .loadingText{
  text-align: center;
+}
+
+.background{
+    background-image: none;
 }
