@@ -192,3 +192,66 @@ margin: 0 auto;
     color: #001F3F;
     background-color: #fff;
 }
+
+.endscreen {
+    color: #fff;
+    border: 3px solid white;
+    font-family:'Montserrat', sans-serif;
+    text-align: center;
+    line-height: 5;
+    font-size: 30px;
+    background-color : transparent;
+    padding: 10px;
+    margin: 60px;
+    outline: none;
+    border-radius: 5px;
+    align-content: center;
+    
+}
+
+.points {
+    color: #fff;
+    border: 3px dotted green;
+    font-family:'Montserrat', sans-serif;
+    text-align: center;
+    line-height: 5;
+    font-size: 30px;
+    background-color : transparent;
+    padding: 10px;
+    margin: 10px;
+    outline: none;
+    border-radius: 50px;
+    align-content: center;
+}
+
+.playagain{
+    color: #fff;
+
+    background-color : transparent;
+    padding: 10px;
+    margin-left: 450px;
+    margin-right: 450px;
+    outline: none;
+    border-radius: 4px;
+    text-align: center;
+
+}
+
+.btnplayagain {
+    color: #fff;
+    border: 3px solid white;
+    font-family:'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 30px;
+    background-color : transparent;
+    padding: 10px;
+    outline: none;
+    border-radius: 4px;
+    text-align: center;
+}
+
+
+.btnplayagain:hover {
+    color: #001F3F;
+    background-color: #fff;
+}
