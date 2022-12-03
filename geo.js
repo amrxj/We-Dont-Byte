@@ -2,10 +2,13 @@ var easy_Button = false;
 var medium_Button = false;
 var hard_Button = false;
 
-var globalScore = 0; 
-let count = Number(localStorage.getItem('guessCounter')) || 0;
+let score = Number(sessionStorage .getItem('globalScore')) || 0;; 
+let count = Number(sessionStorage .getItem('guessCounter')) || 0;
+let cityCounter =  Number(sessionStorage .getItem('cityCounter')) || 0;
 
-const citiesPhotos1 = [""];
+var citiesPhotos_ = [];
+//window.sessionStorage.setItem("cityPhotos", JSON.stringify(cityPhotos)) || "";
+
 const quotes = ["We cannot solve problems with the kind of thinking we employed when we came up with them. — Albert Einstein", 
                 "Learn as if you will live forever, live like you will die tomorrow. — Mahatma Gandhi", 
                 "When you give joy to other people, you get more joy in return. You should give a good thought to happiness that you can give out. — Eleanor Roosevelt", 
@@ -139,8 +142,6 @@ async function loading(loadingText, copyCityphotos, allQuotes, previousNumberpho
     var counter = 0;
     var previous = [];
     var previous2 = [];
-    var bothTruequotes = false;
-    var bothTruephoto = false;
 
     previous.push(previousNumberphoto);
     previous.push(previousNumberquote);
@@ -169,7 +170,7 @@ async function loading(loadingText, copyCityphotos, allQuotes, previousNumberpho
             
         }while (tmp != 0);
 
-        alert(randomNum);
+        //alert(randomNum);
         
         previous.push(randomNum);
 
@@ -280,32 +281,38 @@ function randomQuote(){
 } 
 
 function randomImage(){
-    
-    var previous3 = [];
+
     var copyCityphotos = citiesPhotos;
     var cityPhoto = document.getElementById("photo");
+    var array = JSON.parse(sessionStorage.getItem("citiesPhotos_")) || [];
+
+    if(array.length == 50){
+        alert("You have run out of cities! Please close the page and restart!");
+    }
 
     do{
         var tmp = 0;
-
         var randomNum = Math.floor(Math.random() * copyCityphotos.length);
 
-
-        for(var i = 0; i < previous3.length; i++){
-
-            if(previous3[i] != randomNum){
-            }
-
-            else if(previous3[i] == randomNum){
-                tmp++;
-            }
+        for(var i = 0; i < copyCityphotos.length; i++){
+                
+            for(var j = 0; j < array.length; j++){
+;
+                if(array[j].includes(copyCityphotos[randomNum])){
+                    tmp++;
+                    break
+                    }
+              }
         }
-    }while (tmp != 0);
-    
-    previous3.push(randomNum);
+    }while (tmp != 0); 
 
     cityPhoto.src = copyCityphotos[randomNum];
 
+    array.push(copyCityphotos[randomNum]);
+
+    sessionStorage.setItem("citiesPhotos_", JSON.stringify(array));
+
+    console.log(array);
 }
 
 function guess(){
@@ -313,7 +320,7 @@ function guess(){
     var copyCityphotos = citiesPhotos;
     var location = document.getElementById("photo").src;
 
-    localStorage.setItem('guessCounter', count + 1);
+    sessionStorage .setItem('guessCounter', count + 1);
 
     for(var i = 0; i < copyCityphotos.length; i++){
         if(location == copyCityphotos[i]){
@@ -328,7 +335,7 @@ function guess(){
 
         alert("Correct! the answer was " + cityName + ".");
 
-        globalScore++;
+        score += score + 5;
       
     }
 
@@ -339,12 +346,11 @@ function guess(){
     }
 
     count++;
-    alert(`count ${count}`);
 
     window.location.reload();
 
     if (count == 5){
-       if(!alert("my text here")) document.location = 'WDB_EndScreen.html';
+       if(!alert("Here are the results!")) document.location = 'WDB_EndScreen.html';
 
     }
 
