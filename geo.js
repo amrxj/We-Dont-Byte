@@ -20,9 +20,9 @@ const quotes = ["We cannot solve problems with the kind of thinking we employed 
                 "Im a greater believer in luck, and I find the harder I work the more I have of it. — Thomas Jefferson", 
                 "When we strive to become better than we are, everything around us becomes better too. — Paulo Coelho", 
                 "Setting goals is the first step in turning the invisible into the visible. — Tony Robbins", 
-                "You've got to get up every morning with determination if you're going to go to bed with satisfaction. — George Lorimer"]
+                "You've got to get up every morning with determination if you're going to go to bed with satisfaction. — George Lorimer"];
 
-//global varibles
+//global variables
     //people can add more cities if need be
     const cities = ["Toronto", "New York", "Tokyo", "Jakarta", "Chonqing", "Delhi", "Seoul", "São Paulo", "Mexico City", "Buenos Aires"];
     //the aspect ratio should be a good quality and the postion of the array element corrseponds to the cites at the top
@@ -224,6 +224,7 @@ function randomQuote(){
 
 } 
 
+<<<<<<< HEAD
 function randomImage(){
     
     var previous3 = [];
@@ -272,3 +273,8 @@ function guess(randomNum){
 
 
 }
+=======
+function FullscreenHelp(){
+    alert("To Go Fullscreen, Press F11.")
+}
+>>>>>>> dc442854a75f6ed72da634bae808e7227969f7fc
