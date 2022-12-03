@@ -2,9 +2,11 @@ var easy_Button = false;
 var medium_Button = false;
 var hard_Button = false;
 
+
 let score = Number(sessionStorage .getItem('globalScore')) || 0;; 
 let count = Number(sessionStorage .getItem('guessCounter')) || 0;
 let cityCounter =  Number(sessionStorage .getItem('cityCounter')) || 0;
+let playAgain =  Number(sessionStorage .getItem('playAgain')) || 0;
 
 var citiesPhotos_ = [];
 //window.sessionStorage.setItem("cityPhotos", JSON.stringify(cityPhotos)) || "";
@@ -232,6 +234,8 @@ async function loading(loadingText, copyCityphotos, allQuotes, previousNumberpho
         await sleep(counter * 1000);
     }
 
+    if(!alert("The game has finished loading!")) document.location = 'WDB_Gameplay.html';
+
 }
 
 function difficulty_Button()
@@ -287,8 +291,44 @@ function randomImage(){
     var array = JSON.parse(sessionStorage.getItem("citiesPhotos_")) || [];
 
     if(array.length == 50){
-        alert("You have run out of cities! Please close the page and restart!");
+        if(!alert("You have run out of cities! Please close the page and restart! But you can see your score for the session first!")) return document.location = 'WDB_EndScreen.html';
     }
+
+    if(array.length == 0 || playAgain == -1){
+
+        do{
+            
+            var rightNumber = false;
+            var userInput = parseInt(prompt("How many cites would you like to guess? (You can guess from 1 to 50 cities at a time.)"));
+
+            if(userInput < 0){
+                alert("You entered a negative number try again.");
+            }
+
+            else if(userInput > 50){
+                alert("We don't have that many cities.");
+            }
+
+            else if(userInput == null){
+                alert("You need to enter in a number!");
+            }
+
+            else if(userInput > 0 && userInput < 51){
+                rightNumber = true;
+            }
+            else{
+                alert("Thats not a number!");
+            }
+        
+
+        }while(!(rightNumber))
+
+        count = userInput -1;
+
+        sessionStorage .setItem('playAgain', 0);
+
+    }
+
 
     do{
         var tmp = 0;
@@ -320,7 +360,7 @@ function guess(){
     var copyCityphotos = citiesPhotos;
     var location = document.getElementById("photo").src;
 
-    sessionStorage .setItem('guessCounter', count + 1);
+    sessionStorage .setItem('guessCounter', count - 1);
 
     for(var i = 0; i < copyCityphotos.length; i++){
         if(location == copyCityphotos[i]){
@@ -329,13 +369,13 @@ function guess(){
     }
     var cityName = cities[randomNum];
 
-    var guess = document.getElementById("answer_Text").value;
+    var guess = document.getElementById("answer_Text").value.toLowerCase();
 
-    if(guess == cityName){
+    if(guess == cityName.toLowerCase()){
 
         alert("Correct! the answer was " + cityName + ".");
 
-        score += score + 5;
+        sessionStorage .setItem('globalScore', score + 5);
       
     }
 
@@ -345,15 +385,18 @@ function guess(){
     
     }
 
-    count++;
-
     window.location.reload();
 
-    if (count == 5){
+    if (count == 0){
        if(!alert("Here are the results!")) document.location = 'WDB_EndScreen.html';
-
     }
 
+}
+
+function finalScore(){
+    var finalScore = document.getElementById("score");
+    finalScore.innerText += score;
+    sessionStorage .setItem('playAgain',  -1);
 }
 
 function FullscreenHelp(){
