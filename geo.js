@@ -248,3 +248,7 @@ function randomQuote(){
     var newPhoto = document.getElementById("quote").vaule = quotes[randomNum];
 
 } 
+
+function FullscreenHelp(){
+    alert("To Go Fullscreen, Press F11.")
+}
