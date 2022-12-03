@@ -273,8 +273,18 @@ function guess(randomNum){
 
 
 }
-=======
+
+
+
+
+
+
+
+
+
+
+//options
 function FullscreenHelp(){
     alert("To Go Fullscreen, Press F11.")
 }
->>>>>>> dc442854a75f6ed72da634bae808e7227969f7fc
+
