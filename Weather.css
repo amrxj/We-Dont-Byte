@@ -1,0 +1,41 @@
+body{
+    background-color: black;
+}
+.weather_buttons {
+    transition: all .5s ease;
+    color: #fff;
+    border: 3px solid white;
+    font-family:'Montserrat', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    font-size: 30px;
+    background-color : transparent;
+    padding: 10px;
+    margin: 20px;
+    outline: none;
+    border-radius: 4px;
+    display: flex;
+    margin: 0 auto;
+}
+.weather_buttons:hover {
+    color: #001F3F;
+    background-color: #fff;
+}
+
+#description{
+    text-align: center;
+    color: white;
+}
+#temp{
+    text-align: center;
+    color: white;
+}
+#feels{
+    text-align: center;
+    color: white;
+}
+#wind{
+    text-align: center;
+    color: white;
+}
