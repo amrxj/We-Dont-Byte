@@ -2,9 +2,9 @@ var easy_Button = false;
 var medium_Button = false;
 var hard_Button = false;
 
-const cities_Easy = ["Tokyo", "Delhi", "Shanghai", "São Paulo", "Mexico City", "Cairo", "Mumbai", "Bejing", "Dahaka", "Osaka", "New York City", "Dubai", "Buenos Aires", "Istanbul", "Venice", "Manila", "Lagos", "Rio de Janeiro", "Stockholm", "Los Angeles", "Moscow", "Shenzen", "Banglore", "Paris", "Bogotá", "Lima", "Seoul", "Bangkok", "London", "Vancouver", "Chicago", "Riyadh", "Santiago", "Madrid", "Houston", "Dallas", "Toronto", "Miami", "Atlanta", "Barcelona", "Ottawa", "Saint Petersburg", "Washington DC"];
-const cities_Medium = ["Melbourne", "Alexandria", "Guadalajara", "Hanoi", "Sydney", "Monterrey", "Cape Town", "Tel Aviv", "Medellin", "Montreal", "Athens", "Milan", "Lisbon", "Caracas", "Taipei", "Manchester", "Perth", "Vienna", "Quebec City", "Auckland", "Calgary", "Johannesburg"];
-const cities_Hard = ["Philadelphia", "Marseille", "Rosario Argentina", "Munich", "Edmonton", "San Jose", "Belgrade", "San Diego", "Copenhagen", "Helsinki", "Prague", "Dublin", "Cancun", "Jacksonville", "Columbus", "Liverpool City", "Indianapolis", "Guangzhou", "Denver", "Florence"];
+var globalScore = 0; 
+let count = Number(localStorage.getItem('guessCounter')) || 0;
+
 const citiesPhotos1 = [""];
 const quotes = ["We cannot solve problems with the kind of thinking we employed when we came up with them. — Albert Einstein", 
                 "Learn as if you will live forever, live like you will die tomorrow. — Mahatma Gandhi", 
@@ -24,6 +24,7 @@ const quotes = ["We cannot solve problems with the kind of thinking we employed 
 
 //global variables
     //people can add more cities if need be
+    /*
     const cities = ["Toronto", "New York", "Tokyo", "Jakarta", "Chonqing", "Delhi", "Seoul", "São Paulo", "Mexico City", "Buenos Aires"];
     //the aspect ratio should be a good quality and the postion of the array element corrseponds to the cites at the top
     const citiesPhotos = ["https://upload.wikimedia.org/wikipedia/commons/6/65/Toronto_Skyline_Summer_2020.jpg",
@@ -35,7 +36,61 @@ const quotes = ["We cannot solve problems with the kind of thinking we employed 
                 "https://cdn.britannica.com/57/75757-050-122EC2ED/Changgyong-Palace-background-Seoul.jpg",
                 "https://cdn.britannica.com/54/101754-050-3FA9B4A0/Downtown-Sao-Paulo.jpg",
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Sobrevuelos_CDMX_HJ2A4913_%2825514321687%29_%28cropped%29.jpg/1200px-Sobrevuelos_CDMX_HJ2A4913_%2825514321687%29_%28cropped%29.jpg",
-                "https://lp-cms-production.imgix.net/2019-06/4c410251e0146b2edd2b8b1d64a02047-buenos-aires.jpg"];
+                "https://lp-cms-production.imgix.net/2019-06/4c410251e0146b2edd2b8b1d64a02047-buenos-aires.jpg"];*/
+
+    const cities =  ["Toronto", "New York", "Tokyo", "Paris", "Montreal", "Delhi", "Seoul", "SÃo Paulo", "Mexico City", "Buenos Aires", "Shangai", "Mumbai", "Vancouver", "Dubai", "Sydney", "Melbourne", "Hanoi", "Chicago", "Cape Town", "Tel Aviv", "Athens", "Lisbon", "Caracas", "Bogota", "Taipei", "Perth", "Auckland", "Calgary", "Quebec City", "Nice", "Bejing", "los Angeles", "Cairo", "London", "Houston", "San Francisco", "Orlando", "Miami", "Hong Kong", "Barcelona", "Madrid", "Manila", "Istanbul", "Rio De Janeiro", "Moscow", "Lima", "Bangkok", "Saint Petersburg", "Rome", "Venice"];
+    //the aspect ratio should be a good quality and the postion of the array element corrseponds to the cites at the top
+    const citiesPhotos = ["https://upload.wikimedia.org/wikipedia/commons/6/65/Toronto_Skyline_Summer_2020.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu.jpg/1200px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg",
+                "https://images.adsttc.com/media/images/5d44/14fa/284d/d1fd/3a00/003d/large_jpg/eiffel-tower-in-paris-151-medium.jpg?1564742900",
+                "https://upload.wikimedia.org/wikipedia/commons/2/2c/Montreal_-_QC_-_Skyline.jpg",
+                "https://cdn.britannica.com/37/189837-050-F0AF383E/New-Delhi-India-War-Memorial-arch-Sir.jpg",
+                "https://cdn.britannica.com/57/75757-050-122EC2ED/Changgyong-Palace-background-Seoul.jpg",
+                "https://cdn.britannica.com/54/101754-050-3FA9B4A0/Downtown-Sao-Paulo.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Sobrevuelos_CDMX_HJ2A4913_%2825514321687%29_%28cropped%29.jpg/1200px-Sobrevuelos_CDMX_HJ2A4913_%2825514321687%29_%28cropped%29.jpg",
+                "https://lp-cms-production.imgix.net/2019-06/4c410251e0146b2edd2b8b1d64a02047-buenos-aires.jpg",
+                "https://i.natgeofe.com/n/302104d1-7616-4ba2-8fa4-316a96b9d718/shanghai_travel.jpg",
+                "https://lp-cms-production.imgix.net/image_browser/Mumbai_nightlife_S.jpg",
+                "http://res.cloudinary.com/simpleview/image/upload/v1589990523/clients/vancouverbc/Vancouver_Aerial_2017_1__72115131-4a31-42dc-b369-7a5ccec8273f.jpg",
+                "https://www.arabianbusiness.com/cloud/2022/07/18/dubai-skyline.jpg",
+                "https://i.natgeofe.com/n/5c32242b-830e-449b-8e27-88f242ebbeb4/sydney-travel_16x9.jpg",
+                "https://www.travelandleisure.com/thmb/2dm9PhvurpcG5g3D2r1Heq0wUsc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/melbourne-australia-MELBOURNETG0721-62ff9ae2570945ec80160ddf46ee7cb1.jpg",
+                "https://media.timeout.com/images/105241454/image.jpg",
+                "https://www.visittheusa.com/sites/default/files/styles/hero_l/public/images/hero_media_image/2018-05/2af94a274ebf7f6716f9b2068595581c.jpeg?h=a98222f4&itok=o5jaY4kH",
+                "https://scontent-fra5-2.cdninstagram.com/v/t51.29350-15/314733579_701502298076891_7415407995522984990_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=y8IvAysbMqoAX_O1muz&_nc_ht=scontent-fra5-2.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfDAGIL2pGVnFQlo1yr3ZuY6bgaXHZHaxxtPCj57hUMDhA&oe=638E5A4E",
+                "https://static.timesofisrael.com/www/uploads/2020/02/Untitled-4-6.jpg",
+                "https://cdn.britannica.com/66/102266-050-FBDEFCA1/acropolis-city-state-Greece-Athens.jpg",
+                "https://images.thestar.com/AjM8npQm6Orzy43RmIfhdfrzgiI=/1086x724/smart/filters:cb(1655384062223):format(webp)/https://www.thestar.com/content/dam/thestar/life/travel/2022/06/17/where-to-go-in-lisbon-portugal-five-unique-gems-in-the-city-from-a-beautiful-new-museum-to-a-quirky-speakeasy/lisbon_portugal_credit_sean3810_istock.jpg",
+                "https://planetofhotels.com/guide/sites/default/files/styles/big_gallery_image/public/text_gallery/CARACAS-1.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/4/4c/Centro_internacional.JPG",
+                "https://lp-cms-production.imgix.net/2019-06/f15f7b57ab31c217f471c6712a2654e0-taipei-101.jpg",
+                "https://content.r9cdn.net/rimg/dimg/ba/de/deacb4c5-city-11563-17a3ef27550.jpg?width=1366&height=768&xhint=4145&yhint=2485&crop=true",
+                "https://media.timeout.com/images/105906099/image.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/9/92/Downtown_Calgary_2020-2.jpg",
+                "https://a.cdn-hotels.com/gdcs/production69/d1733/3cfa8c91-8090-4409-8b2e-a70e7dde33d7.jpg",
+                "https://lp-cms-production.imgix.net/2019-06/3cb45f6e59190e8213ce0a35394d0e11-nice.jpg",
+                "https://www.tripsavvy.com/thmb/Vj0ijS1KJj_uYl7ETYDF3HZ5dRg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/beijing-central-business-district-buildings-skyline--china-cityscape-477749918-ddee5166b7474fd881b53f87244cc6d2.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/3/32/20190616154621%21Echo_Park_Lake_with_Downtown_Los_Angeles_Skyline.jpg",
+                "https://cdn.britannica.com/46/189746-050-C790AE3F/Skyline-Cairo.jpg",
+                "https://media.gq-magazine.co.uk/photos/5d13992e4858d32b28005197/16:9/w_2560%2Cc_limit/London-GQ-13Jan16_Istock_b.jpg",
+                "https://www.visittheusa.com/sites/default/files/styles/16_9_1280x720/public/2016-10/0%20HERO_HoustonTX_GettyImages-532390052_0.jpg?h=c5520b1b&itok=QYZzO_gS",
+                "https://upload.wikimedia.org/wikipedia/commons/6/61/San_Francisco_from_the_Marin_Headlands_in_August_2022.jpg",
+                "https://a.cdn-hotels.com/gdcs/production138/d1647/c1cab211-33d5-4210-b00e-47d627e80c12.jpg",
+                "https://i.natgeofe.com/n/5de6e34a-d550-4358-b7ef-4d79a09c680e/aerial-beach-miami-florida_16x9.jpg",
+                "https://www.business.hsbc.com/-/media/cmb/international-business-guide/hk/images/doing-business-hongkong.jpg?h=961&w=1440&la=en-GB&hash=58C2D49B6CB7D83991A7B683E4D802CC",
+                "https://digital.ihg.com/is/image/ihg/kimpton-barcelona-1700x750-v2",
+                "https://content.r9cdn.net/rimg/dimg/5f/38/353ec907-ap-MAD-551b0685.jpg?width=1366&height=768&xhint=826&yhint=409&crop=true",
+                "https://cdn.britannica.com/81/196781-050-CA29F2C8/Manila.jpg",
+                "https://www.cuddlynest.com/blog/wp-content/uploads/2022/10/day-trips-from-istanbul-scaled.jpg",
+                "https://a.cdn-hotels.com/gdcs/production143/d357/42fb6908-dcd5-4edb-9f8c-76208494af80.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/8/85/Saint_Basil%27s_Cathedral_and_the_Red_Square.jpg",
+                "https://i0.wp.com/roadsandkingdoms.com/uploads/2019/05/shutterstock_1047718252.jpg?w=2400&quality=95&strip=color&ssl=1",
+                "https://www.ask.com/wp-content/uploads/sites/3/2022/04/The-Grand-Palace-of-Bangkok.jpg",
+                "https://cdn.britannica.com/42/178442-050-417FEC6F/Cathedral-of-the-Resurrection-Christ-St-Petersburg.jpg",
+                "https://media.timeout.com/images/105211701/image.jpg",
+                "https://www.travelandleisure.com/thmb/ubTOmrdr85740HVyLq_nGhinVWE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/venice-italy-VENICETG0521-cddab02114ae44f08ba49c8c3fc9158c.jpg"
+            ];
 
 
 //function commenting later
@@ -224,18 +279,16 @@ function randomQuote(){
 
 } 
 
-<<<<<<< HEAD
 function randomImage(){
     
     var previous3 = [];
     var copyCityphotos = citiesPhotos;
     var cityPhoto = document.getElementById("photo");
 
-
     do{
         var tmp = 0;
 
-        randomNum = Math.floor(Math.random() * copyCityphotos.length);
+        var randomNum = Math.floor(Math.random() * copyCityphotos.length);
 
 
         for(var i = 0; i < previous3.length; i++){
@@ -246,44 +299,57 @@ function randomImage(){
             else if(previous3[i] == randomNum){
                 tmp++;
             }
-
         }
-        
     }while (tmp != 0);
     
     previous3.push(randomNum);
 
     cityPhoto.src = copyCityphotos[randomNum];
-    
+
 }
 
-function guess(randomNum){
+function guess(){
 
-    cityName = cities[randomNum];
+    var copyCityphotos = citiesPhotos;
+    var location = document.getElementById("photo").src;
 
-    guess = document.getElementById("answer_Text").value;
+    localStorage.setItem('guessCounter', count + 1);
+
+    for(var i = 0; i < copyCityphotos.length; i++){
+        if(location == copyCityphotos[i]){
+            randomNum = [i]
+        }
+    }
+    var cityName = cities[randomNum];
+
+    var guess = document.getElementById("answer_Text").value;
 
     if(guess == cityName){
+
         alert("Correct! the answer was " + cityName + ".");
+
+        globalScore++;
+      
     }
 
     else{
+
         alert("Wrong city, the answer was " + cityName + ".");
+    
     }
 
+    count++;
+    alert(`count ${count}`);
+
+    window.location.reload();
+
+    if (count == 5){
+       if(!alert("my text here")) document.location = 'WDB_EndScreen.html';
+
+    }
 
 }
 
-
-
-
-
-
-
-
-
-
-//options
 function FullscreenHelp(){
     alert("To Go Fullscreen, Press F11.")
 }
