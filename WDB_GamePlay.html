@@ -9,12 +9,12 @@
         <link rel="stylesheet" href="geo.css">
 
     </head>
-    <body>
+    <body onload = "randomImage()">
             <div class="game_Img">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Toronto_Skyline_Summer_2020.jpg" alt="Image of x city">
+                <img src="" alt="Image of some city" id="photo">
             </div>
         <h1 id="gameplay_Text">Make Your Guess here:</h1>
     <input type="text" id="answer_Text">
     <br>    
-    <button class="gameplay_Buttons">Guess!</button>
+    <button class="gameplay_Buttons" onclick="guess()">Guess!</button>
     </body>

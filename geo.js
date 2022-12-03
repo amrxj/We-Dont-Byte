@@ -39,23 +39,8 @@ const quotes = ["We cannot solve problems with the kind of thinking we employed 
 
 
 //function commenting later
-function initalize(easy, medium, hard){
+function initalize(){
     
-    if(easy == true){
-        var allCityphotos = cities_Easy;
-    }
-
-    else if(medium == true){
-        allCityphotos = cities_Medium;
-    }
-
-    else if (hard == true){
-        allCityphotos = cities_Hard;
-    }
-
-    else {
-        var allCityphotos = cities_Easy;
-    }
 
     var newQuote = document.getElementById("quote");
     var cityPhoto = document.getElementById("city");
@@ -73,8 +58,6 @@ function initalize(easy, medium, hard){
     cityPhoto.src = copyCityphotos[randomNum];
     newQuote.value = allQuotes[randomNum2]
 
-    //splicingArray(copyCityphotos, randomNum);
-    //splicingArray(allQuotes, randomNum2);
 
     loadingPhoto.src = "https://flevix.com/wp-content/uploads/2019/12/Barline-Loading-Images-1.gif";
 
@@ -135,9 +118,7 @@ async function loading(loadingText, copyCityphotos, allQuotes, previousNumberpho
         
         previous.push(randomNum);
 
-        //randomNum = Math.floor(Math.random() * copyCityphotos.length);
         cityPhoto.src = copyCityphotos[randomNum];
-        //splicingArray(copyCityphotos, randomNum);
 
         do{
 
@@ -160,12 +141,6 @@ async function loading(loadingText, copyCityphotos, allQuotes, previousNumberpho
         previous2.push(randomNum2);
         
         newQuote.value = allQuotes[randomNum2];
-        //splicingArray(allQuotes, randomNum2);
-        
-        //alert(allQuotes);
-        //alert(copyCityphotos);
-        
-        //alert(copyCityphotos, randomNum);
 
         counter++;
 
@@ -201,7 +176,6 @@ async function loading(loadingText, copyCityphotos, allQuotes, previousNumberpho
         await sleep(counter * 1000);
     }
 
-    
 }
 
 function difficulty_Button()
@@ -236,6 +210,7 @@ function difficulty_Button()
 
 
 function randomPhoto(){
+    
 
     var randomNum = Math.floor(Math.random() * 10);
     var newPhoto = document.getElementById("img").src = citiesPhotos[randomNum];
@@ -248,3 +223,52 @@ function randomQuote(){
     var newPhoto = document.getElementById("quote").vaule = quotes[randomNum];
 
 } 
+
+function randomImage(){
+    
+    var previous3 = [];
+    var copyCityphotos = citiesPhotos;
+    var cityPhoto = document.getElementById("photo");
+
+
+    do{
+        var tmp = 0;
+
+        randomNum = Math.floor(Math.random() * copyCityphotos.length);
+
+
+        for(var i = 0; i < previous3.length; i++){
+
+            if(previous3[i] != randomNum){
+            }
+
+            else if(previous3[i] == randomNum){
+                tmp++;
+            }
+
+        }
+        
+    }while (tmp != 0);
+    
+    previous3.push(randomNum);
+
+    cityPhoto.src = copyCityphotos[randomNum];
+    
+}
+
+function guess(randomNum){
+
+    cityName = cities[randomNum];
+
+    guess = document.getElementById("answer_Text").value;
+
+    if(guess == cityName){
+        alert("Correct! the answer was " + cityName + ".");
+    }
+
+    else{
+        alert("Wrong city, the answer was " + cityName + ".");
+    }
+
+
+}
