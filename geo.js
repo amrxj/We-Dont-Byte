@@ -224,7 +224,6 @@ function randomQuote(){
 
 } 
 
-<<<<<<< HEAD
 function randomImage(){
     
     var previous3 = [];
@@ -254,10 +253,11 @@ function randomImage(){
     previous3.push(randomNum);
 
     cityPhoto.src = copyCityphotos[randomNum];
-    
+
 }
 
-function guess(randomNum){
+function guess(){
+
 
     cityName = cities[randomNum];
 
@@ -273,8 +273,8 @@ function guess(randomNum){
 
 
 }
-=======
+
 function FullscreenHelp(){
     alert("To Go Fullscreen, Press F11.")
 }
->>>>>>> dc442854a75f6ed72da634bae808e7227969f7fc
+
