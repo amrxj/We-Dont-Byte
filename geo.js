@@ -9,6 +9,10 @@ let cityCounter =  Number(sessionStorage .getItem('cityCounter')) || 0;
 let playAgain =  Number(sessionStorage .getItem('playAgain')) || 0;
 
 var citiesPhotos_ = [];
+var mute = false;
+
+var correct_sound = new Audio('Correct_Sound.mp3');
+var wrong_Sound = new Audio('Wrong_sound.mp3');
 //window.sessionStorage.setItem("cityPhotos", JSON.stringify(cityPhotos)) || "";
 
 const quotes = ["We cannot solve problems with the kind of thinking we employed when we came up with them. — Albert Einstein", 
@@ -43,7 +47,7 @@ const quotes = ["We cannot solve problems with the kind of thinking we employed 
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Sobrevuelos_CDMX_HJ2A4913_%2825514321687%29_%28cropped%29.jpg/1200px-Sobrevuelos_CDMX_HJ2A4913_%2825514321687%29_%28cropped%29.jpg",
                 "https://lp-cms-production.imgix.net/2019-06/4c410251e0146b2edd2b8b1d64a02047-buenos-aires.jpg"];*/
 
-    const cities =  ["Toronto", "New York", "Tokyo", "Paris", "Montreal", "Delhi", "Seoul", "SÃo Paulo", "Mexico City", "Buenos Aires", "Shangai", "Mumbai", "Vancouver", "Dubai", "Sydney", "Melbourne", "Hanoi", "Chicago", "Cape Town", "Tel Aviv", "Athens", "Lisbon", "Caracas", "Bogota", "Taipei", "Perth", "Auckland", "Calgary", "Quebec City", "Nice", "Bejing", "los Angeles", "Cairo", "London", "Houston", "San Francisco", "Orlando", "Miami", "Hong Kong", "Barcelona", "Madrid", "Manila", "Istanbul", "Rio De Janeiro", "Moscow", "Lima", "Bangkok", "Saint Petersburg", "Rome", "Venice"];
+    const cities =  ["Toronto", "New York", "Tokyo", "Paris", "Montreal", "Delhi", "Seoul", "SÃo Paulo", "Mexico City", "Buenos Aires", "Shanghai", "Mumbai", "Vancouver", "Dubai", "Sydney", "Melbourne", "Hanoi", "Chicago", "Cape Town", "Tel Aviv", "Athens", "Lisbon", "Caracas", "Bogota", "Taipei", "Perth", "Auckland", "Calgary", "Quebec City", "Nice", "Bejing", "los Angeles", "Cairo", "London", "Houston", "San Francisco", "Orlando", "Miami", "Hong Kong", "Barcelona", "Madrid", "Manila", "Istanbul", "Rio De Janeiro", "Moscow", "Lima", "Bangkok", "Saint Petersburg", "Rome", "Venice"];
     //the aspect ratio should be a good quality and the postion of the array element corrseponds to the cites at the top
     const citiesPhotos = ["https://upload.wikimedia.org/wikipedia/commons/6/65/Toronto_Skyline_Summer_2020.jpg",
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu.jpg/1200px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu.jpg",
@@ -237,38 +241,6 @@ async function loading(loadingText, copyCityphotos, allQuotes, previousNumberpho
     if(!alert("The game has finished loading!")) document.location = 'WDB_Gameplay.html';
 
 }
-
-function difficulty_Button()
-{
-
-
- if (document.getElementById("easy").clicked == true)
- {
-    document.getElementById("easy").style.backgroundColor = "white";
-    document.getElementById("easy").style.Color = "Black";
-    easy_Button = true;
-    medium_Button = false;
-    hard_Button = false;
- }
- else if (document.getElementById("medium").clicked == true)
- {
-    document.getElementById("medium").style.backgroundColor = "white";
-    document.getElementById("medium").style.Color = "Black";
-    easy_Button = false;
-    medium_Button = true;
-    hard_Button = false;
- }
- else if (document.getElementById("hard").clicked == true)
- {
-    document.getElementById("hard").style.backgroundColor = "white";
-    document.getElementById("hard").style.Color = "Black";
-    easy_Button = false;
-    medium_Button = false;
-    hard_Button = true;
- }
-}
-
-
 function randomPhoto(){
     
 
@@ -372,15 +344,20 @@ function guess(){
     var guess = document.getElementById("answer_Text").value.toLowerCase();
 
     if(guess == cityName.toLowerCase()){
-
+        if (mute == false)
+        {
+            correct_sound.play();
+        }
         alert("Correct! the answer was " + cityName + ".");
-
         sessionStorage .setItem('globalScore', score + 5);
       
     }
 
     else{
-
+        if (mute == false)
+        {
+            wrong_Sound.play();
+        }
         alert("Wrong city, the answer was " + cityName + ".");
     
     }
@@ -403,3 +380,27 @@ function FullscreenHelp(){
     alert("To Go Fullscreen, Press F11.")
 }
 
+function mute(){
+    alert("Game is now muted! To unmute click Un-mute.");
+}
+function unmute(){
+    alert("Game is now unmuted! To mute click Mute.");
+}
+
+
+
+$('#mute-button').on('click', function(){
+
+    $('audio,video').each(function(){
+       $(this).volume = 0.0;
+    });
+
+});
+
+$('un#mute-button').on('click', function(){
+
+    $('audio,video').each(function(){
+       $(this).volume = 100;
+    });
+
+});
