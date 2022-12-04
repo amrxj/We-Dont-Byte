@@ -380,7 +380,7 @@ function FullscreenHelp(){
     alert("To Go Fullscreen, Press F11.")
 }
 
-function mute(){
+function muted(){
     alert("Game is now muted! To unmute click Un-mute.")
 }
 function unmute(){
