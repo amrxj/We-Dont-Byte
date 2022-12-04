@@ -1,0 +1,23 @@
+{
+  "name": "we-dont-byte",
+  "version": "1.0.0",
+  "description": "public repo for EECS 1012 Project. Will be used & explained later into project, but for now it's created and here for group members + TA's to use and monitor.",
+  "main": "Weather.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amrxj/We-Dont-Byte.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amrxj/We-Dont-Byte/issues"
+  },
+  "homepage": "https://github.com/amrxj/We-Dont-Byte#readme",
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.1.0"
+  }
+}
