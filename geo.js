@@ -380,12 +380,13 @@ function FullscreenHelp(){
     alert("To Go Fullscreen, Press F11.")
 }
 
-function muted(){
-    alert("To Mute Game, Right Click The Tab At The Top, and select 'Mute Site'.")
+function mute(){
+    alert("To Mute, Right Click Tab & Click 'Mute Site'.");
 }
 function unmute(){
-    alert("To Mute Game, Right Click The Tab At The Top, and select 'Unmute Site'.")
+    alert("To Unmute, Right Click Tab & Click 'Unmute Site'.");
 }
+
 
 
 $('#mute-button').on('click', function(){
@@ -399,7 +400,7 @@ $('#mute-button').on('click', function(){
 $('un#mute-button').on('click', function(){
 
     $('audio,video').each(function(){
-       $(this).volume = 1.0;
+       $(this).volume = 100;
     });
 
 });
