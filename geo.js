@@ -381,12 +381,11 @@ function FullscreenHelp(){
 }
 
 function muted(){
-    alert("Game is now muted! To unmute click Un-mute.")
+    alert("To Mute Game, Right Click The Tab At The Top, and select 'Mute Site'.")
 }
 function unmute(){
-    alert("Game is now unmuted! To mute click Un-mute.")
+    alert("To Mute Game, Right Click The Tab At The Top, and select 'Unmute Site'.")
 }
-
 
 
 $('#mute-button').on('click', function(){
