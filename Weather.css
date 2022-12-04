@@ -20,7 +20,7 @@
      }
     .weather_buttons:hover {
         color: #001F3F;
-        backround color: #fff;
+        backround-color : #fff;
     }
 
     #description{
