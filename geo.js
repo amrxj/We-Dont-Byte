@@ -380,7 +380,7 @@ function FullscreenHelp(){
     alert("To Go Fullscreen, Press F11.")
 }
 
-function mute(){
+function muted(){
     alert("To Mute, Right Click Tab & Click 'Mute Site'.");
 }
 function unmute(){
