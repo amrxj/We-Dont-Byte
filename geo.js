@@ -381,10 +381,10 @@ function FullscreenHelp(){
 }
 
 function mute(){
-    alert("Game is now muted! To unmute click Un-mute.");
+    alert("Game is now muted! To unmute click Un-mute.")
 }
 function unmute(){
-    alert("Game is now unmuted! To mute click Mute.");
+    alert("Game is now unmuted! To mute click Un-mute.")
 }
 
 
@@ -400,7 +400,7 @@ $('#mute-button').on('click', function(){
 $('un#mute-button').on('click', function(){
 
     $('audio,video').each(function(){
-       $(this).volume = 100;
+       $(this).volume = 1.0;
     });
 
 });
