@@ -29,7 +29,7 @@ const findmylocation = () => {
     const error = () => {
         status.textContent = 'Unable to retrieve your location';
     }
-    navigator.geolocation.getCurrentPosition(success, error)
+    navigator.geolocation.getCurrentPosition(success, error);
 }
     document.querySelector('.weather_buttons').addEventListener('click', findmylocation);
 
