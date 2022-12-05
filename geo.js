@@ -1,7 +1,5 @@
-var easy_Button = false;
-var medium_Button = false;
-var hard_Button = false;
 
+//Global Variables
 
 let score = Number(sessionStorage .getItem('globalScore')) || 0;; 
 let count = Number(sessionStorage .getItem('guessCounter')) || 0;
@@ -9,12 +7,12 @@ let cityCounter =  Number(sessionStorage .getItem('cityCounter')) || 0;
 let playAgain =  Number(sessionStorage .getItem('playAgain')) || 0;
 
 var citiesPhotos_ = [];
-var mute = false;
 
 var correct_sound = new Audio('Correct_Sound.mp3');
 var wrong_Sound = new Audio('Wrong_sound.mp3');
 //window.sessionStorage.setItem("cityPhotos", JSON.stringify(cityPhotos)) || "";
 
+// Random Quotes
 const quotes = ["We cannot solve problems with the kind of thinking we employed when we came up with them. — Albert Einstein", 
                 "Learn as if you will live forever, live like you will die tomorrow. — Mahatma Gandhi", 
                 "When you give joy to other people, you get more joy in return. You should give a good thought to happiness that you can give out. — Eleanor Roosevelt", 
@@ -31,24 +29,9 @@ const quotes = ["We cannot solve problems with the kind of thinking we employed 
                 "Setting goals is the first step in turning the invisible into the visible. — Tony Robbins", 
                 "You've got to get up every morning with determination if you're going to go to bed with satisfaction. — George Lorimer"];
 
-//global variables
-    //people can add more cities if need be
-    /*
-    const cities = ["Toronto", "New York", "Tokyo", "Jakarta", "Chonqing", "Delhi", "Seoul", "São Paulo", "Mexico City", "Buenos Aires"];
-    //the aspect ratio should be a good quality and the postion of the array element corrseponds to the cites at the top
-    const citiesPhotos = ["https://upload.wikimedia.org/wikipedia/commons/6/65/Toronto_Skyline_Summer_2020.jpg",
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu.jpg/1200px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu.jpg",
-                "https://upload.wikimedia.org/wikipedia/commons/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg",
-                "https://content.r9cdn.net/rimg/dimg/1b/61/ad879e55-city-22380-17ea1cf2107.jpg?crop=true&width=1020&height=498",
-                "https://upload.wikimedia.org/wikipedia/commons/6/67/Chongqing_Nightscape.jpg",
-                "https://cdn.britannica.com/37/189837-050-F0AF383E/New-Delhi-India-War-Memorial-arch-Sir.jpg",
-                "https://cdn.britannica.com/57/75757-050-122EC2ED/Changgyong-Palace-background-Seoul.jpg",
-                "https://cdn.britannica.com/54/101754-050-3FA9B4A0/Downtown-Sao-Paulo.jpg",
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Sobrevuelos_CDMX_HJ2A4913_%2825514321687%29_%28cropped%29.jpg/1200px-Sobrevuelos_CDMX_HJ2A4913_%2825514321687%29_%28cropped%29.jpg",
-                "https://lp-cms-production.imgix.net/2019-06/4c410251e0146b2edd2b8b1d64a02047-buenos-aires.jpg"];*/
-
-    const cities =  ["Toronto", "New York", "Tokyo", "Paris", "Montreal", "Delhi", "Seoul", "SÃo Paulo", "Mexico City", "Buenos Aires", "Shanghai", "Mumbai", "Vancouver", "Dubai", "Sydney", "Melbourne", "Hanoi", "Chicago", "Cape Town", "Tel Aviv", "Athens", "Lisbon", "Caracas", "Bogota", "Taipei", "Perth", "Auckland", "Calgary", "Quebec City", "Nice", "Bejing", "los Angeles", "Cairo", "London", "Houston", "San Francisco", "Orlando", "Miami", "Hong Kong", "Barcelona", "Madrid", "Manila", "Istanbul", "Rio De Janeiro", "Moscow", "Lima", "Bangkok", "Saint Petersburg", "Rome", "Venice"];
-    //the aspect ratio should be a good quality and the postion of the array element corrseponds to the cites at the top
+    // Array for city names
+    const cities =  ["Toronto", "New York", "Tokyo", "Paris", "Montreal", "Delhi", "Seoul", "Sao Paulo", "Mexico City", "Buenos Aires", "Shanghai", "Mumbai", "Vancouver", "Dubai", "Sydney", "Melbourne", "Hanoi", "Chicago", "Cape Town", "Tel Aviv", "Athens", "Lisbon", "Caracas", "Bogota", "Taipei", "Perth", "Auckland", "Calgary", "Quebec City", "Nice", "Bejing", "los Angeles", "Cairo", "London", "Houston", "San Francisco", "Orlando", "Miami", "Hong Kong", "Barcelona", "Madrid", "Manila", "Istanbul", "Rio De Janeiro", "Moscow", "Lima", "Bangkok", "Saint Petersburg", "Rome", "Venice"];
+    //Array for links to city pictures
     const citiesPhotos = ["https://upload.wikimedia.org/wikipedia/commons/6/65/Toronto_Skyline_Summer_2020.jpg",
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu.jpg/1200px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu.jpg",
                 "https://upload.wikimedia.org/wikipedia/commons/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg",
@@ -102,7 +85,7 @@ const quotes = ["We cannot solve problems with the kind of thinking we employed 
             ];
 
 
-//function commenting later
+//Initalizing of the game when loading page is started
 function initalize(){
     
 
@@ -114,7 +97,7 @@ function initalize(){
     var copyCityphotos = citiesPhotos;
     var allQuotes = quotes;
 
-
+    // Getting random numbers in regards to the length of the arrays
     var randomNum = Math.floor(Math.random() * copyCityphotos.length);
     var randomNum2 = Math.floor(Math.random() * allQuotes.length);
 
@@ -133,7 +116,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 
 }
-
+//Splicing the array to make sure the same value picture is not outputted twice throughout play
 function splicingArray(arr, value) {
 
     var index = arr.indexOf(value);
@@ -205,7 +188,8 @@ async function loading(loadingText, copyCityphotos, allQuotes, previousNumberpho
         newQuote.value = allQuotes[randomNum2];
 
         counter++;
-
+        // Switch cases calling counter in so that loading percentage can change in the loading screen
+        //This is a faux loading screen
         switch(counter){
 
             case 1:
@@ -241,6 +225,7 @@ async function loading(loadingText, copyCityphotos, allQuotes, previousNumberpho
     if(!alert("The game has finished loading!")) document.location = 'WDB_Gameplay.html';
 
 }
+//random city photo function to be used in the loading screen 
 function randomPhoto(){
     
 
@@ -248,26 +233,26 @@ function randomPhoto(){
     var newPhoto = document.getElementById("img").src = citiesPhotos[randomNum];
 
 }
-
+//Random quote to be selected from the quotes array while in the loading screen to motivate the player
 function randomQuote(){
 
     var randomNum = Math.floor(Math.random() * 10);
     var newPhoto = document.getElementById("quote").vaule = quotes[randomNum];
 
 } 
-
+//random city photo function to be used in the gameplay screen
 function randomImage(){
 
     var copyCityphotos = citiesPhotos;
     var cityPhoto = document.getElementById("photo");
     var array = JSON.parse(sessionStorage.getItem("citiesPhotos_")) || [];
-
+    //Sends user to the end screen once they have played all pictures
     if(array.length == 50){
         if(!alert("You have run out of cities! Please close the page and restart! But you can see your score for the session first!")) return document.location = 'WDB_EndScreen.html';
     }
 
     if(array.length == 0 || playAgain == -1){
-
+        //do while for user selection of rounds
         do{
             
             var rightNumber = false;
@@ -326,12 +311,12 @@ function randomImage(){
 
     console.log(array);
 }
-
+//guess function in charge of seeing if player has answered or correctly or incorrectly
 function guess(){
 
     var copyCityphotos = citiesPhotos;
     var location = document.getElementById("photo").src;
-
+    // game counter to remember what # round out of player decided rounds
     sessionStorage .setItem('guessCounter', count - 1);
 
     for(var i = 0; i < copyCityphotos.length; i++){
@@ -340,24 +325,20 @@ function guess(){
         }
     }
     var cityName = cities[randomNum];
-
+    //Getting guess from text box after user clicks guess and changing all the values to lowercase
     var guess = document.getElementById("answer_Text").value.toLowerCase();
-
+    //if else to check whether user has inputted the correct answer
     if(guess == cityName.toLowerCase()){
-        if (mute == false)
-        {
-            correct_sound.play();
-        }
+        // sound player
+        correct_sound.play();
         alert("Correct! the answer was " + cityName + ".");
         sessionStorage .setItem('globalScore', score + 5);
       
     }
 
     else{
-        if (mute == false)
-        {
-            wrong_Sound.play();
-        }
+        
+        wrong_Sound.play();
         alert("Wrong city, the answer was " + cityName + ".");
     
     }
@@ -369,13 +350,13 @@ function guess(){
     }
 
 }
-
+//function for final score page, End screen
 function finalScore(){
     var finalScore = document.getElementById("score");
     finalScore.innerText += score;
     sessionStorage .setItem('playAgain',  -1);
 }
-
+//Functions for options page
 function FullscreenHelp(){
     alert("To Go Fullscreen, Press F11.")
 }
@@ -387,8 +368,8 @@ function unmute(){
     alert("To Unmute, Right Click Tab & Click 'Unmute Site'.");
 }
 
-
-
+/*
+Attempt at making a mute button
 $('#mute-button').on('click', function(){
 
     $('audio,video').each(function(){
@@ -404,3 +385,5 @@ $('un#mute-button').on('click', function(){
     });
 
 });
+
+*/
